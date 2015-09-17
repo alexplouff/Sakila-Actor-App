@@ -17,11 +17,15 @@ public class Actor implements ActorStrategy {
     
     public Actor(){}
     
+    public Actor(String firstName, String lastName){
+        setFirstName(firstName);
+        setLastName(lastName);
+    }
+    
     public Actor(String firstName, String lastName, String id){
         setFirstName(firstName);
         setLastName(lastName);
         setId(id);
-        
     }
 
     @Override

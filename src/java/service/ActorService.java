@@ -5,7 +5,12 @@
  */
 package service;
 
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.List;
 import model.ActorStrategy;
+import model.Actor_DAO_Strategy;
+import model.Actor_DTO;
 
 /**
  *
@@ -13,21 +18,42 @@ import model.ActorStrategy;
  */
 public class ActorService {
     
-    private ActorStrategy actor;
+    private Actor_DTO dto;
     
-    public ActorService(){}
-    
-    public ActorService(ActorStrategy actor){
-        setActor(actor);
+    public ActorService(Actor_DTO dto){
+        setDTO(dto);
     }
 
-    public ActorStrategy getActor() {
-        return actor;
+    public Actor_DTO getActorDTO() {
+        return dto;
     }
 
-    public final void setActor(ActorStrategy actor) {
-        this.actor = actor;
+    public final void setDTO(Actor_DTO dto) {
+        this.dto = dto;
     }
+
+    public void createActorRecord(List<String> values) throws SQLException, ClassNotFoundException{
+        
+        dto.createActorForDAO(values);
+        
+    }
+    
+    public void updateActorRecord(List<String> values) throws SQLException, ClassNotFoundException{
+        dto.updateActorInDatabase(values);
+    }
+    
+    public void deleteActorRecords(List<String> keys) throws SQLException, ClassNotFoundException{
+        dto.deleteRecordsFromDatabase(keys);
+    }
+    
+    public List<ActorStrategy> getAllActors() throws SQLException, ClassNotFoundException{
+        return dto.getAllActors();
+    }
+    
+    public ActorStrategy getActorByID(String id) throws SQLException, ClassNotFoundException{
+        return dto.getActorById(id);
+    }
+    
     
     
 }
